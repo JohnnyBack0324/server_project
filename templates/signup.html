@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>회원가입</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            background-color: #f4f4f4;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        header {
+            background-color: #DE628B;
+            color: #fff;
+            text-align: center;
+            padding: 10px;
+            width: 100%;
+            position: fixed;
+            top: 0;
+        }
+
+        main {
+            padding: 100px 20px 20px;
+            margin-bottom: 80px;
+            max-width: 400px;
+            width: 100%;
+        }
+
+        form {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+        }
+
+        input {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        input[type="submit"] {
+            background-color: #DE628B;
+            color: #fff;
+            cursor: pointer;
+            padding: 12px;
+            border: none;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #555;
+        }
+
+        footer, nav {
+            background-color: #DE628B;
+            color: #fff;
+            text-align: center;
+            padding: 10px;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            margin: 0 10px;
+        }
+
+        .email-container {
+        display: flex;
+        flex-direction: column;
+        }
+
+        .email-inputs {
+        display: flex;
+        align-items: baseline;
+        }
+
+        select[name="email-suffix"] {
+        width: 150px;
+        padding: 10px;
+        }
+
+        select[name="email-suffix"] option {
+        padding: 5px 10px;
+        margin: 2px 0;
+        }
+
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>회원가입</h1>
+    </header>
+
+    <main>
+
+        <form method="post" id="signup-form">
+            <h2>회원가입</h2>
+
+            <label for="username">Username:</label>
+            <input type="text" name="username" required><br>
+
+            <label for="password">Password:</label>
+            <input type="password" name="password" required><br>
+
+            <div class="email-container">
+                <label for="email-prefix">Email:</label>
+                <div class="email-inputs">
+                    <input type="text" name="email-prefix" id="email-prefix" required>
+                    <span>@</span>
+                    <select name="email-suffix" id="email-suffix" required>
+                        <option value="">이메일 도메인 선택</option>
+                        <option value="gmail.com">gmail.com</option>
+                        <option value="naver.com">naver.com</option>
+                        <option value="daum.net">daum.net</option>
+                        <option value="yahoo.com">yahoo.com</option>
+                        <option value="hotmail.com">hotmail.com</option>
+                    </select>
+                </div>
+            </div>
+
+            <input type="submit" value="sign up">
+        </form>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Your Website. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // JavaScript 코드
+        const emailPrefixInput = document.getElementById('email-prefix');
+        const emailSuffixSelect = document.getElementById('email-suffix');
+
+        // 이메일 도메인을 선택하면 이를 이메일 입력란 앞부분에 자동으로 추가
+        emailSuffixSelect.addEventListener('change', function() {
+            const selectedDomain = emailSuffixSelect.value;
+            const emailPrefix = emailPrefixInput.value;
+            const fullEmail = emailPrefix + "@" + selectedDomain;
+            emailPrefixInput.value = emailPrefix; // 사용자 입력은 그대로 유지
+        });
+
+        // 폼 제출 시, 이메일 앞부분과 뒷부분을 합쳐 전체 이메일을 만듦
+        const form = document.getElementById('signup-form');
+        form.addEventListener('submit', function(event) {
+            const emailPrefix = emailPrefixInput.value;
+            const emailSuffix = emailSuffixSelect.value;
+            const fullEmail = emailPrefix + "@" + emailSuffix;
+
+            // 전체 이메일을 숨겨진 필드에 추가
+            const hiddenEmailField = document.createElement('input');
+            hiddenEmailField.setAttribute('type', 'hidden');
+            hiddenEmailField.setAttribute('name', 'email');
+            hiddenEmailField.setAttribute('value', fullEmail);
+            form.appendChild(hiddenEmailField);
+        });
+    </script>
+
+</body>
+</html>
