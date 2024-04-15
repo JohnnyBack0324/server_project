@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>채팅 목록</title>
+  <style>
+    .chat-room-list {
+      list-style-type: none;
+      padding: 0;
+    }
+
+    .chat-room-list li {
+      padding: 10px;
+      cursor: pointer;
+    }
+
+    .chat-room-list li:hover {
+      background-color: #f0f0f0;
+    }
+  </style>
+</head>
+<body>
+
+<ul class="chat-room-list">
+  <li onclick="openChatRoom('room1')">방 1</li>
+  <li onclick="openChatRoom('room2')">방 2</li>
+  <li onclick="openChatRoom('room3')">방 3</li>
+</ul>
+
+<script>
+  function openChatRoom(roomName) {
+    const chatWindow = window.open("chatroom.html?room=" + roomName, "채팅방", "width=300,height=400,top=100,right=100");
+  }
+</script>
+
+</body>
+</html>

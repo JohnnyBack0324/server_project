@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>채팅방</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+    }
+
+    .chat-window {
+      display: flex;
+      flex-direction: column;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      border: 1px solid #ccc;
+      width: 90%;
+      max-width: 350px;
+      height: 90%;
+      max-height: 500px;
+      background-color: #fff;
+      z-index: 9998;
+      border-radius: 5px;
+    }
+
+    .close-button {
+      align-self: flex-end;
+      margin: 5px;
+      cursor: pointer;
+    }
+
+    .chat-content {
+      flex-grow: 1;
+      padding: 10px;
+      overflow-y: auto;
+    }
+
+    .input-container {
+      display: flex;
+      align-items: center;
+      padding: 5px;
+    }
+
+    .input-box {
+      flex-grow: 1;
+      padding: 8px;
+      margin-right: 5px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      font-size: 14px;
+    }
+
+    .send-button {
+      padding: 8px 15px;
+      border: none;
+      background-color: #007bff;
+      color: #fff;
+      border-radius: 5px;
+      font-size: 14px;
+      cursor: pointer;
+    }
+
+    .send-button:hover {
+      background-color: #0056b3;
+    }
+  </style>
+</head>
+<body>
+
+<div class="chat-window">
+  <span class="close-button" onclick="closeChatWindow()">✖</span>
+  <div class="chat-content" id="chatContent"></div>
+  <div class="input-container">
+    <input type="text" class="input-box" id="messageInput" placeholder="메시지 입력" onkeypress="handleKeyPress(event)">
+    <button class="send-button" onclick="sendMessage()">전송</button>
+  </div>
+</div>
+
+<script>
+  const chatContent = document.getElementById("chatContent");
+  const messageInput = document.getElementById("messageInput");
+
+  // 채팅방 닫기 함수
+  function closeChatWindow() {
+    window.close();
+  }
+
+  // 메시지 전송 함수
+  function sendMessage() {
+    const message = messageInput.value.trim();
+    if (message !== "") {
+      appendMessage("나", message);
+      messageInput.value = "";
+    }
+  }
+
+  // 엔터 누르면 전송
+  function handleKeyPress(event) {
+    if (event.key === "Enter") {
+      sendMessage();
+    }
+  }
+
+  // 메시지 추가 함수
+  function appendMessage(sender, message) {
+    const messageElement = document.createElement("div");
+    messageElement.textContent = `${sender}: ${message}`;
+    chatContent.appendChild(messageElement);
+    chatContent.scrollTop = chatContent.scrollHeight;
+  }
+</script>
+
+</body>
+</html>
