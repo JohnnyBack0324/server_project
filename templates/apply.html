@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>공모전 신청</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f8ff;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h2 {
+            text-align: center;
+            color: #333;
+        }
+        form {
+            margin-top: 20px;
+        }
+        label {
+            font-weight: bold;
+            color: #333;
+        }
+        input[type="text"],
+        input[type="email"],
+        input[type="tel"] {
+            width: calc(100% - 22px);
+            padding: 10px;
+            margin-top: 5px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+        textarea {
+            width: calc(100% - 22px);
+            padding: 10px;
+            margin-top: 5px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+        input[type="submit"] {
+            width: 100%;
+            padding: 10px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            box-sizing: border-box;
+        }
+        input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>공모전 신청</h2>
+        <form action="submit.php" method="post">
+            <label for="name">이름:</label><br>
+            <input type="text" id="name" name="name" required><br>
+            <label for="email">이메일 주소:</label><br>
+            <input type="email" id="email" name="email" required><br>
+            <label for="phone">전화번호:</label><br>
+            <input type="tel" id="phone" name="phone" required><br>
+            <label for="school_job">학교 또는 직장 정보:</label><br>
+            <input type="text" id="school_job" name="school_job" required><br>
+            <label for="intent">참가 의도 또는 목적:</label><br>
+            <textarea id="intent" name="intent" rows="4" required></textarea><br>
+            <label for="experience">이전 경험:</label><br>
+            <textarea id="experience" name="experience" rows="4" required></textarea><br>
+            <input type="submit" value="신청하기">
+        </form>
+    </div>
+</body>
+</html>
